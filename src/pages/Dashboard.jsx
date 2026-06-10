@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useAuth } from "../context/AuthContext";
 import { db, serverTimestamp } from "../config/firebase";
 import {
@@ -12,7 +12,7 @@ import {
   orderBy,
   onSnapshot
 } from "firebase/firestore";
-import { LogOut, TrendingUp, PlusCircle, AlertCircle, ShoppingBag } from "lucide-react";
+import { LogOut, TrendingUp, PlusCircle, ShoppingBag } from "lucide-react";
 import { formatCurrency, calculatePercentage } from "../utils/helpers";
 import WishCard from "../components/WishCard";
 import LoadingSkeleton from "../components/LoadingSkeleton";

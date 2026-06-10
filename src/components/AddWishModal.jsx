@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+/* eslint-disable react-hooks/set-state-in-effect */
+import { useState, useEffect } from "react";
 import { X } from "lucide-react";
 
 export default function AddWishModal({ isOpen, onClose, onSave, editingWish }) {

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   BarChart,
   Bar,
@@ -8,6 +7,37 @@ import {
   ResponsiveContainer,
   Legend
 } from "recharts";
+
+// Formatador de valores BRL para o Tooltip
+const formatTooltipValue = (value) => {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    maximumFractionDigits: 0
+  }).format(value);
+};
+
+const CustomTooltip = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div style={{
+        backgroundColor: "var(--panel-bg)",
+        border: "2px solid var(--border-color)",
+        padding: "12px",
+        fontFamily: "var(--font-family-mono)",
+        fontSize: "0.8rem"
+      }}>
+        <p style={{ fontWeight: "bold", marginBottom: "8px", color: "var(--text-primary)" }}>{label}</p>
+        {payload.map((item, index) => (
+          <p key={index} style={{ color: item.color, margin: "4px 0" }}>
+            {item.name}: {formatTooltipValue(item.value)}
+          </p>
+        ))}
+      </div>
+    );
+  }
+  return null;
+};
 
 export default function CategoryChart({ wishes }) {
   // Agrupar e somar valores por categoria
@@ -27,37 +57,6 @@ export default function CategoryChart({ wishes }) {
     }
     return acc;
   }, []);
-
-  // Formatador de valores BRL para o Tooltip
-  const formatTooltipValue = (value) => {
-    return new Intl.NumberFormat("pt-BR", {
-      style: "currency",
-      currency: "BRL",
-      maximumFractionDigits: 0
-    }).format(value);
-  };
-
-  const CustomTooltip = ({ active, payload, label }) => {
-    if (active && payload && payload.length) {
-      return (
-        <div style={{
-          backgroundColor: "var(--panel-bg)",
-          border: "2px solid var(--border-color)",
-          padding: "12px",
-          fontFamily: "var(--font-family-mono)",
-          fontSize: "0.8rem"
-        }}>
-          <p style={{ fontWeight: "bold", marginBottom: "8px", color: "var(--text-primary)" }}>{label}</p>
-          {payload.map((item, index) => (
-            <p key={index} style={{ color: item.color, margin: "4px 0" }}>
-              {item.name}: {formatTooltipValue(item.value)}
-            </p>
-          ))}
-        </div>
-      );
-    }
-    return null;
-  };
 
   if (categoryData.length === 0) {
     return (

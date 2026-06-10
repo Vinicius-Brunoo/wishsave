@@ -1,6 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { Edit3, Trash2, ArrowUpRight, Coins } from "lucide-react";
+import { Edit3, Trash2, Coins } from "lucide-react";
 import { formatCurrency, calculatePercentage } from "../utils/helpers";
 
 export default function WishCard({ wish, onEdit, onDelete }) {
